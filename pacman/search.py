@@ -86,7 +86,24 @@ def depthFirstSearch(problem):
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    fringe = util.Stack()
+    explored = []
+
+    fringe.push(problem.getStartState())
+
+    while not fringe.isEmpty():
+        currentState = fringe.pop()
+        explored.append(currentState)
+
+        print currentState
+
+        for state in problem.getSuccessors(currentState):
+            if state not in explored:
+                fringe.push(state)
+
+        if problem.isGoalState(currentState):
+            return currentState.getAction()
+
 
 
 def breadthFirstSearch(problem):
@@ -95,14 +112,46 @@ def breadthFirstSearch(problem):
     DICA: Utilizar util.PriorityQueue
     *** YOUR CODE HERE ***
     """
-    util.raiseNotDefined()
+    fringe = util.Queue()
+    explored = []
+
+    fringe.push(problem.getStartState())
+
+    while not fringe.isEmpty():
+        currentState = fringe.pop()
+        explored.append(currentState)
+
+        print currentState
+
+        for state in problem.getSuccessors(currentState):
+            if state not in explored:
+                fringe.push(state)
+
+        if problem.isGoalState(currentState):
+            return currentState.getAction()
 
     
 def uniformCostSearch(problem):
     """Search the node of least total cost first.
     *** YOUR CODE HERE ***
     """
-    util.raiseNotDefined()
+    fringe = util.PriorityQueue()
+    explored = []
+
+    fringe.push(problem.getStartState(), problem.getStartState.getCostOfActions())
+
+    while not fringe.isEmpty():
+        currentState = fringe.pop()
+        explored.append(currentState)
+
+        print currentState
+
+        for state in problem.getSuccessors(currentState):
+            if state not in explored:
+                fringe.push(state)
+
+        if problem.isGoalState(currentState):
+            return currentState.getAction()
 
 def nullHeuristic(state, problem=None):
     """
